@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+        <!-- Bootstrap CSS -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" 
+        rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" 
+        crossorigin="anonymous">
+
+        <script
+          src="https://code.jquery.com/jquery-3.4.1.js"
+          integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="></script>
+
+        	
+
+{% block head %}
+{% endblock %}
+
+</head>
+
+
+
+<body>
+
+
+  <title>Yallah Let's Get Tested</title>
+
+    <!-- Navbar content -->
+
+    <div class = "topnav">
+      <a class = "active" href ='#home' > Home</a>
+      <a href = "doctors" > Doctors</a>
+      <a href = contact > Contact</a>
+    </div>
+    <span class="navbar-text"style="color: aliceblue;" >
+              <strong>Yallah Let's Get Tested </strong> 
+    </span>
+
+<div>
+  {% block content %}
+  {% endblock %}
+
+  {% block body%}
+  
+  {% endblock %}
+</div>
+</body>
+</html>

@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+	<div id="homepage-block">
+    <h1 id="homepage-title">Yallah Let's Get Tested</h1>
+	</div>
+    
+    {% for facility in obgyn_facility_list %}
+        <h4><a href="/facilities/{{facility.facility_id}}">{{facility.f_name_english}}</a> </h4>
+    {% endfor %}
+
+    {% if not 'user' in session %}
+    <h2>Create an Account</h2>
+    <form action="/users" method="POST">
+    <p>
+      Email <input type="text" name="email">
+    </p>
+
+    <p>
+      Password <input type="password" name="password">
+    </p>
+
+    <p>
+      <input type="submit">
+    </p>
+    </form>
+    
+    <h2>Log In </h2>
+    <form action="/login" method="POST">
+      <p>
+        Email <input type="text" name="email">
+      </p>
+  
+      <p>
+        Password <input type="password" name="password">
+      </p>
+  
+      <p>
+        <input type="submit">
+      </p>
+    </form>
+    
+    {% else %}
+    <a href='/logout'>Logout</a>
+    
+    {% endif %}
+    <nav>
+      <p><a href="/map/docs">Doctors</a></p>
+    </nav>
+
+{% endblock %}

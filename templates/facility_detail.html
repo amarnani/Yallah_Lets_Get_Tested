@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+	<div id="homepage-block">
+    <h1 id="homepage-title">Yallah Let's Get Tested</h1>
+	</div>
+    <h2>{{facility.f_name_english}}<h2>
+    {% for professional in facility.professionals %}
+        <a href='/professionals/{{professional.id}}'>{{professional.full_name_english}}</a>
+    {% endfor %}
+{% endblock %}
+
+
