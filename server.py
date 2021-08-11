@@ -206,7 +206,7 @@ if __name__ == "__main__":
     # Do not debug for demo
     ##IMPORTANT##
     ###TURN OFF WHEN DEPLOY###
-    app.debug = False
+    app.debug = True
 
     connect_to_db(app)
 
