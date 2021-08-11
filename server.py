@@ -23,11 +23,24 @@ app.jinja_env.undefined = StrictUndefined
 def homepage():
     """View homepage."""
     
+    #obgyn_facility_list = crud.get_all_obgyn()
+
+
+    return render_template('homepage.html')
+    #, obgyn_facility_list = obgyn_facility_list)
+
+@app.route('/contact_us')
+def contact_us():
+    """ Direct to Contact Us Page"""
+
+    return render_template('contactus2.html')
+
+@app.route('/all_docs')
+def all_doctors():
+    """View all Facilities"""
     obgyn_facility_list = crud.get_all_obgyn()
 
-
-    return render_template('homepage.html', obgyn_facility_list = obgyn_facility_list)
-
+    return render_template('obgyn_facility_list.html', obgyn_facility_list = obgyn_facility_list)
 
 @app.route('/users', methods = ["POST"])
 def register_user():
@@ -71,6 +84,15 @@ def process_login():
         flash('The email or password you have entered is not valid')
         return redirect('/')
 
+@app.route('/login', methods = ['GET'])
+def show_loginform():
+    if 'user' in session:
+        flash('You are already loggedin!')
+        return redirect('/')
+    
+    return render_template('login.html')
+    
+
 @app.route('/logout', methods = ['GET'])
 def process_logout():
 
@@ -82,7 +104,8 @@ def process_logout():
 def show_facility(facility_id):
     
     facility = crud.get_facility_by_id(facility_id)
-    
+    for professional in facility.professionals:
+        print(professional.full_name_english)
     return render_template('facility_detail.html', facility = facility)
 
 @app.route('/professionals/<int:professional_id>')
@@ -91,13 +114,6 @@ def show_professional(professional_id):
     professional = crud.get_professional_by_id(professional_id)
     
     return render_template('professional_detail.html', professional = professional)
-
-
-@app.route("/")
-def index():
-    """Show homepage."""
-
-    return render_template("index.html")
 
 
 @app.route("/professionals/<int:professional_id>/ratings", methods=["POST"])
@@ -137,7 +153,7 @@ def create_review(professional_id):
 def view_docs_map():
     """Show map of doctors."""
 
-    return render_template("map-basic.html")
+    return render_template("/")
 
 @app.route("/api/docs")
 def doc_info():
@@ -180,7 +196,7 @@ def show_doctors():
     else:
         obgyns = []
 
-    return render_template("Search form.html", obgyns= obgyns)
+    return render_template("results.html", obgyns = obgyns)
 
 
 if __name__ == "__main__":
@@ -190,7 +206,7 @@ if __name__ == "__main__":
     # Do not debug for demo
     ##IMPORTANT##
     ###TURN OFF WHEN DEPLOY###
-    app.debug = True
+    app.debug = False
 
     connect_to_db(app)
 

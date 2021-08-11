@@ -2,13 +2,26 @@
 
 
 {% block content %}
-	<div id="homepage-block">
-    <h1 id="homepage-title">Yallah Let's Get Tested</h1>
-	</div>
-    <h2>{{facility.f_name_english}}<h2>
+	
+
+<div id="homepage-block">
+    <h1 id="homepage-title">Here are the doctors avaliable at the facility you chose:</h1>
+	
+    <h2>{{facility.f_name_english}}</h2>
+    <h2>
     {% for professional in facility.professionals %}
-        <a href='/professionals/{{professional.id}}'>{{professional.full_name_english}}</a>
-    {% endfor %}
-{% endblock %}
+    {% if professional.full_name_english%}
+    
+    <div class="accordion" id="accordionExample">
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="headingTwo">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+            <a href='/professionals/{{professional.id}}'>{{professional.full_name_english}}</a>
+            </button>
+          </h2>
+          {% endif %}
+          {% endfor %}
+    {% endblock %}
 
 
+</div>

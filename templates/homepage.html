@@ -1,52 +1,71 @@
 {% extends 'base.html' %}
 
 
-{% block content %}
-	<div id="homepage-block">
-    <h1 id="homepage-title">Yallah Let's Get Tested</h1>
-	</div>
-    
-    {% for facility in obgyn_facility_list %}
-        <h4><a href="/facilities/{{facility.facility_id}}">{{facility.f_name_english}}</a> </h4>
-    {% endfor %}
+{% block head  %}
+            
+            <link rel="stylesheet" href="/static/css/maps.css"> 
+            <link rel="stylesheet" href="/static/css/doctor.css">
+            <link rel="stylesheet" href="/static/css/home.css">
 
-    {% if not 'user' in session %}
-    <h2>Create an Account</h2>
-    <form action="/users" method="POST">
-    <p>
-      Email <input type="text" name="email">
-    </p>
+{% endblock %}
 
-    <p>
-      Password <input type="password" name="password">
-    </p>
+{% block heading %}
+<div class="container">
+    <div id='firstheading'>
+    Find Doctors that are RIGHT for you! 
+    </div>
+    <div id='secondheading'>
+    Sign up today!
+    </div>
+</div>
 
-    <p>
-      <input type="submit">
-    </p>
-    </form>
-    
-    <h2>Log In </h2>
-    <form action="/login" method="POST">
-      <p>
-        Email <input type="text" name="email">
-      </p>
-  
-      <p>
-        Password <input type="password" name="password">
-      </p>
-  
-      <p>
-        <input type="submit">
-      </p>
-    </form>
-    
-    {% else %}
-    <a href='/logout'>Logout</a>
-    
-    {% endif %}
-    <nav>
-      <p><a href="/map/docs">Doctors</a></p>
-    </nav>
+{% endblock %}     
+
+ {% block content %}
+ <script src="/static/js/mapStyles.js"></script>
+ <script src="/static/js/docs_test.js"></script>
+ <script
+     async defer
+     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDxYRHis6wsWiumhyTgqSXKrcpbKI3uJiE&callback=initMap">
+ </script>
+
+<div class="container">
+    <div id="testrow"class="row">
+        <div id="col1" class="col">
+            <main>
+                <section class="map">
+                <div id="map"></div>
+                </section>
+            </main>
+           
+        </div>
+
+        <div id="col2" class="col">
+            
+            <h2> Select Doctor</h2>
+
+                <form action='/search'>
+                    <label for = "gender">Choose a gender:</label>
+                    <select id='gender' name ='gender'>
+                        <option value="Female">Female</option>
+                        <option value="Male">Male</option>
+                        <option value="all">No Preference</option> 
+                    </select>
+                    <br></br>
+                    <label for = "location">Choose a location:</label>
+                    <select id='location' name ='location'>
+                        <option value="AL BARSHA FIRST">AL BARSHA FIRST</option>
+                        <option value="BURJ DUBAI">BURJ DUBAI</option>
+                        <option value="AL SAFA FIRST">AL SAFA FIRST</option> 
+                        <option value="AL BARSHA THIRD">AL BARSHA THIRD</option> 
+                        <option value="AL RIGGA">AL RIGGA</option>
+                    </select>
+                    <div>
+                    <button type="submit" class="btn btn-lg text-center"> Submit</button>
+                    </div>
+                </form> 
+        </div>
+    </div>
+</div>
 
 {% endblock %}

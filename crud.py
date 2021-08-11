@@ -134,7 +134,7 @@ def get_all_obgyn_by_location_and_gender(location, gender='all'):
         #obgyns = Professional.query.join(Facility).filter(Facility.facility_category_name_english=='Obstetrics and Gynecology', Professional.area_english==location, Professional.gender_english==gender).all()
         #print([(obgyn.facility.facility_category_name_english, obgyn.area_english, obgyn.gender_english) for obgyn in obgyns], '############ OBGYNS ############')
     #return db.session.query(Professional).filter_by(area_english=location, gender_english=gender).all()
-    return obgyns.all()
+    return obgyns.distinct()
 
 
 

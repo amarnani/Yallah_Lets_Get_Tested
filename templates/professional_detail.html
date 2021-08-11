@@ -1,11 +1,33 @@
 {% extends 'base.html' %}
 
+{% block head  %}
 
+<link rel="stylesheet" href="/static/css/professional_detail.css"> 
+
+{% endblock %}
 {% block content %}
-	<div id="homepage-block">
-    <h1 id="homepage-title">Yallah Let's Get Tested</h1>
-	</div>
-    <h2>{{professional.full_name_english}}<h2>
-    <h4>{{professional.telephone}}</h4>
-
+<div class="container">
+    <div class="row">
+      <div class="col">
+        </div>
+    <div class="col">
+	    <div id="homepage-block">
+        <img src="/static/img/doctor_female.png" alt="Doctor" width="200" height="200">
+        <h2>Name:{{professional.full_name_english}}</h2>
+        <h4> Contact Details: </h4>
+        <div>
+            Telephone:{{professional.telephone}}
+        </div>
+        <div>    
+            email: {{professional.email_address}}
+        </div>
+        <h4> Gender:</h4>
+        {{professional.gender_english}}
+        
+    </div>
+    </div>
+    <div class="col">
+    </div>
+</div>
+</div>
 {% endblock %}

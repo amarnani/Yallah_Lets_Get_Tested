@@ -20,6 +20,8 @@ div.window-content {
   list-style: none;
   padding: 0;
   margin: 1em 0 1em 1em;
+  color: black;
+
 }
 
 img[src="/static/img/Doctor.svg"] {
