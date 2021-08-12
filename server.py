@@ -165,7 +165,8 @@ def doc_info():
              "name": fac.f_name_english,
              "address":fac.address_line_one,
              "lat": fac.lat,
-             "lng":fac.lng
+             "lng":fac.lng,
+             "telephone":fac.telephone_1
              
          }
          for fac in facility

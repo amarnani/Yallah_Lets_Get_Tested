@@ -42,7 +42,7 @@ function initMap() {
           <ul class="bear-info">
             <li><b>Facility name: </b>${doc.name}</li>
             <li><b>Facility address: </b>${doc.address}</li>
-            <li><b>Location: </b>${doc.lat}, ${doc.lng}</li>
+            <li><b>Telephone: </b>${doc.telephone}</li>
           </ul>
         </div>
       `);
@@ -58,6 +58,8 @@ function initMap() {
           url: '/static/img/doctor.svg',
           scaledSize: new google.maps.Size(50, 50)
         },
+        title: `Facility: ${doc.telephone}`,
+
         map: map,
       });
 
